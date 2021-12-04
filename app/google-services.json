@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "52610193341",
+    "project_id": "ridewithme-dc661",
+    "storage_bucket": "ridewithme-dc661.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52610193341:android:9ac63694f56da5fcb764d4",
+        "android_client_info": {
+          "package_name": "edu.uga.cs.ridewithme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52610193341-plelp6ckf66iv278uken5ase998acrvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTJwRmUn_a7dvpXVdd-wmLJCTwvJ9Cbf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52610193341-plelp6ckf66iv278uken5ase998acrvm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

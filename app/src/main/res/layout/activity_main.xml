@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ridewithme_home"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-200dp"
+            android:fontFamily="monospace"
+            android:gravity="top"
+            android:shadowColor="#FF736666"
+            android:shadowDx="5.0"
+            android:shadowDy="1.3"
+            android:shadowRadius="1.6"
+            android:text="Ride With Me"
+            android:textColor="#0C0000"
+            android:textSize="45sp"
+            android:translationY="75dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/descp"
+            android:textAlignment="center"
+            android:textColor="#736666"
+            android:translationY="80dp" />
+
+        <LinearLayout
+            android:id="@+id/signInButtonsBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:translationY="90dp"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/login" />
+
+            <Button
+                android:id="@+id/registerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/register" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/loginBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:translationY="120dp"
+            android:visibility="invisible">
+
+            <EditText
+                android:id="@+id/emailBox"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="@string/emailHint"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/passBox"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="@string/passHint"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submitButton" />
+
+            <Button
+                android:id="@+id/registerButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/register" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/promoTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/promo"
+            android:textAlignment="center"
+            android:translationY="350dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

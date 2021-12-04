@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RideWithMe</string>
+    <string name="descp">Let\'s Go, Together.</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="promo">Now offered in most major cities across the US.</string>
+    <string name="emailHint">Enter email</string>
+    <string name="passHint">Enter password</string>
+    <string name="submitButton">Submit</string>
+</resources>
