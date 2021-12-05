@@ -1,6 +1,7 @@
 package edu.uga.cs.ridewithme;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class PostManagementActivity extends AppCompatActivity {
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference fireBase = db.getReference();
+
+    private Button createButton, viewButton;
 
     //TODO: Implement Once Logged In here
     @Override

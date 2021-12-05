@@ -10,4 +10,73 @@
     <string name="submitButton">Submit</string>
     <string name="regTitle">Join RideWithMe</string>
     <string name="username">Enter username</string>
+
+    <string name="create">Create a post</string>
+    <string name="createTitle">Create a Listing</string>
+    <string name="dateField">Enter the departure date</string>
+    <string name="timeField">Enter the departure time</string>
+    <string name="arrival">Arrival Location</string>
+    <string name="depart">Departure Location</string>
+    <string name="switcher">Driver</string>
+    <string name="views">View posts</string>
+
+    <string-array name="states">
+        <item>(Select departure state)</item>
+        <item>Georgia</item>
+        <item>Florida</item>
+        <item>Tennessee</item>
+        <item>Alabama</item>
+        <item>Mississippi</item>
+        <item>Texas</item>
+    </string-array>
+    <string-array name="holder">
+        <item>(Select a departure state first)</item>
+    </string-array>
+
+    <string-array name="flCities">
+        <item>(Select city)</item>
+        <item>Miami</item>
+        <item>Palm Springs</item>
+        <item>Tampa</item>
+        <item>Tallahassee</item>
+        <item>Fort Lauderdale</item>
+        <item>Tamarac</item>
+    </string-array>
+    <string-array name="tnCities">
+        <item>(Select city)</item>
+        <item>Nashville</item>
+        <item>Chattanooga</item>
+        <item>Cleveland</item>
+        <item>Memphis</item>
+        <item>Pigeon Forge</item>
+        <item>Jackson</item>
+    </string-array>
+    <string-array name="alCities">
+        <item>(Select city)</item>
+        <item>Auburn</item>
+        <item>Montgomery</item>
+        <item>Huntsville</item>
+        <item>Mobile</item>
+        <item>Orange Beach</item>
+        <item>Hoover</item>
+    </string-array>
+    <string-array name="msCities">
+        <item>(Select city)</item>
+        <item>Oxford</item>
+        <item>Laurel</item>
+        <item>Starkville</item>
+        <item>Hattiesburg</item>
+        <item>Mississippi State</item>
+        <item>Tupelo</item>
+    </string-array>
+    <string-array name="txCities">
+        <item>(Select city)</item>
+        <item>Houston</item>
+        <item>Dallas</item>
+        <item>San Antonio</item>
+        <item>Austin</item>
+        <item>El Paso</item>
+        <item>Amarillo</item>
+    </string-array>
+
 </resources>
