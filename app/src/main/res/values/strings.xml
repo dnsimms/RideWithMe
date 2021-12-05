@@ -19,6 +19,7 @@
     <string name="depart">Departure Location</string>
     <string name="switcher">Driver</string>
     <string name="views">View posts</string>
+    <string name="createButton">Create</string>
 
     <string-array name="states">
         <item>(Select departure state)</item>
@@ -29,6 +30,7 @@
         <item>Mississippi</item>
         <item>Texas</item>
     </string-array>
+
     <string-array name="holder">
         <item>(Select a departure state first)</item>
     </string-array>
@@ -41,6 +43,15 @@
         <item>Tallahassee</item>
         <item>Fort Lauderdale</item>
         <item>Tamarac</item>
+    </string-array>
+    <string-array name="gaCities">
+        <item>(Select city)</item>
+        <item>Atlanta</item>
+        <item>Marietta</item>
+        <item>Buford</item>
+        <item>Athens</item>
+        <item>Alpharetta</item>
+        <item>Duluth</item>
     </string-array>
     <string-array name="tnCities">
         <item>(Select city)</item>

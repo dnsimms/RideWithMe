@@ -33,18 +33,11 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".DashboardActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="true">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity
             android:name=".CreateListing"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".PostManagementActivity"
             android:exported="true">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".PostManagementActivity" />
         </activity>
     </application>
 

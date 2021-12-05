@@ -1,10 +1,13 @@
 package edu.uga.cs.ridewithme;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainerView;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -16,34 +19,36 @@ public class PostManagementActivity extends AppCompatActivity {
 
     private Button createButton, viewButton;
 
-    //TODO: Implement Once Logged In here
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_page);
 
-        //TODO: initialize the layout stuff & listeners
-        //TODO to write things to the database do it is kind of similar to a list
-        //TODO for example when a user creates a post you do:
-        //TODO fireBase.child("posts").child(postID).setValue(POSTOBJECT);
+        createButton = findViewById(R.id.createPost);
+        viewButton = findViewById(R.id.viewPosts);
+        FragmentContainerView frag = findViewById(R.id.viewFrag);
+
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PostManagementActivity.this, CreateListing.class);
+                startActivity(intent);
+            }
+        });
+
+        //dont touch
+        viewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createButton.setVisibility(View.GONE);
+                frag.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
-    //TODO you can make the time a spinner or a text box idc
-    //TODO write a method to create a new post using the post class
 
-    public class Posts{
-        public String date, time, depart, arrival;
 
-        public Posts(){
-            //keep empty
-        }
 
-        public Posts(String date, String time, String depart, String arrival ){
-            this.date = date;
-            this.time = time;
-            this.depart = depart;
-            this.arrival = arrival;
-        }
-    }
 
 }

@@ -35,4 +35,16 @@
                 android:text="@string/views" />
         </LinearLayout>
     </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/viewFrag"
+        class="edu.uga.cs.ridewithme.DashboardFrag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="viewFrag"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
