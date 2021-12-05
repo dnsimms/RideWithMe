@@ -6,5 +6,8 @@
     <string name="promo">Now offered in most major cities across the US.</string>
     <string name="emailHint">Enter email</string>
     <string name="passHint">Enter password</string>
+    <string name="confirmHint">Confirm password</string>
     <string name="submitButton">Submit</string>
+    <string name="regTitle">Join RideWithMe</string>
+    <string name="username">Enter username</string>
 </resources>
