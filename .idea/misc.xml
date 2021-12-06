@@ -3,11 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Destiny-Senpai/AndroidStudioProjects/RideWithMe/app/src/main/res/layout/activity_create_listing.xml" value="0.22" />
         <entry key="..\:/Users/Destiny-Senpai/AndroidStudioProjects/RideWithMe/app/src/main/res/layout/activity_dashboard.xml" value="0.1" />
-        <entry key="..\:/Users/Destiny-Senpai/AndroidStudioProjects/RideWithMe/app/src/main/res/layout/activity_entry_page.xml" value="0.25" />
+        <entry key="..\:/Users/Destiny-Senpai/AndroidStudioProjects/RideWithMe/app/src/main/res/layout/activity_entry_page.xml" value="0.1" />
         <entry key="..\:/Users/Destiny-Senpai/AndroidStudioProjects/RideWithMe/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Destiny-Senpai/AndroidStudioProjects/RideWithMe/app/src/main/res/layout/activity_register.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_create_listing.xml" value="0.335" />
       </map>
     </option>
   </component>

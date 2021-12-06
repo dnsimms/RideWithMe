@@ -1,5 +1,9 @@
 package edu.uga.cs.ridewithme;
 
+import android.widget.Button;
+import android.widget.Switch;
+import android.widget.ToggleButton;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,6 +64,12 @@ public class Posts{
     public void setArrivalCity(String arrivalc){this.arrivalCity = arrivalc;}
 
     //TODO add a setter/getter for UserType
+    public String getUserType() {
+        return userType;
+    }
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     public String toString() {
         return "" + date + " " + time + " " + departState + " " + departCity + " " + arrivalState + "" + arrivalCity;
