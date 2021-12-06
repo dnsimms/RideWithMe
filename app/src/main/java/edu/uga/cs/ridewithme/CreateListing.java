@@ -16,6 +16,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class CreateListing extends AppCompatActivity {
 
     private Button createButton;
@@ -134,12 +138,19 @@ public class CreateListing extends AppCompatActivity {
         post.setDate(date);
         post.setTime(time);
         String username = user.getDisplayName();
+        String locationKey = fireBase.child("rider")
+                .push().getKey();
+        Map<String, Object> postContents = post.toMap();
+        Map<String, Object> updater =new HashMap<>();
+
+        updater.put("/posts/" + username + "/rider/" + locationKey, postContents);
+
 
         //TODO you'll need to set the type if not a driver
 
         //this one line is how you add to the data base
         //it will always be this
-        fireBase.child("posts").child(username).setValue(post);
+        fireBase.updateChildren(updater);
 
     }
 }

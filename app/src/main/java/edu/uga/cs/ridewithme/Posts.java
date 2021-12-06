@@ -1,5 +1,8 @@
 package edu.uga.cs.ridewithme;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents a single post. Date, time, departing location, arrival location.
  */
@@ -24,6 +27,18 @@ public class Posts{
         this.arrivalState = arrivals;
         this.departCity = departc;
         this.arrivalCity = arrivalc;
+    }
+
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("Date", date);
+        result.put("Time", time);
+        result.put("Depart State", departState);
+        result.put("Depart City", departCity);
+        result.put("Arrival State", arrivalState);
+        result.put("Arrival City", arrivalCity);
+
+        return result;
     }
 
     public String getDate(){return date;}
