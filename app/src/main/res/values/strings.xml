@@ -22,7 +22,7 @@
     <string name="createButton">Create</string>
 
     <string-array name="states">
-        <item>(Select departure state)</item>
+        <item>(Select state)</item>
         <item>Georgia</item>
         <item>Florida</item>
         <item>Tennessee</item>
@@ -31,8 +31,12 @@
         <item>Texas</item>
     </string-array>
 
+
     <string-array name="holder">
-        <item>(Select a departure state first)</item>
+        <item>(Select a departing state first)</item>
+    </string-array>
+    <string-array name="holder2">
+        <item>(Select an arrival state first)</item>
     </string-array>
 
     <string-array name="flCities">

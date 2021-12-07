@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ public class PostManagementActivity extends AppCompatActivity {
     private DatabaseReference fireBase = db.getReference();
 
     private Button createButton, viewButton;
+    private LinearLayout entryLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,7 @@ public class PostManagementActivity extends AppCompatActivity {
 
         createButton = findViewById(R.id.createPost);
         viewButton = findViewById(R.id.viewPosts);
-        FragmentContainerView frag = findViewById(R.id.viewFrag);
+        entryLayout = findViewById(R.id.entryLayout);
 
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,8 +42,8 @@ public class PostManagementActivity extends AppCompatActivity {
         viewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createButton.setVisibility(View.GONE);
-                frag.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(PostManagementActivity.this, DashboardActivity.class);
+                startActivity(intent);
             }
         });
 

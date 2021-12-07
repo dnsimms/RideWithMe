@@ -39,6 +39,13 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PostManagementActivity" />
         </activity>
+        <activity
+            android:name=".DashboardActivity"
+            android:parentActivityName=".PostManagementActivity"
+            android:exported="true">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PostManagementActivity" />
+        </activity>
     </application>
 
 </manifest>

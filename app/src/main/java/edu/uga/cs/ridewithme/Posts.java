@@ -37,6 +37,7 @@ public class Posts{
         result.put("Depart City", departCity);
         result.put("Arrival State", arrivalState);
         result.put("Arrival City", arrivalCity);
+        result.put("User Type", userType);
 
         return result;
     }
@@ -59,7 +60,12 @@ public class Posts{
     public String getArrivalCity(){return arrivalCity;}
     public void setArrivalCity(String arrivalc){this.arrivalCity = arrivalc;}
 
-    //TODO add a setter/getter for UserType
+    public String getUserType() {
+        return userType;
+    }
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     public String toString() {
         return "" + date + " " + time + " " + departState + " " + departCity + " " + arrivalState + "" + arrivalCity;
