@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:theme="?attr/actionBarTheme" />
+
+    <TextView
+        android:id="@+id/userTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:text="username"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/departTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/depart"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/departCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="City" />
+
+            <TextView
+                android:id="@+id/departState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="State" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/arrivalTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight=".5"
+            android:text="@string/arrival"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/arrivalCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/arrivalState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dateBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/timeBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time" />
+
+    <TextView
+        android:id="@+id/riderPoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rider Points" />
+
+    <Button
+        android:id="@+id/accept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Accept" />
+
+</LinearLayout>

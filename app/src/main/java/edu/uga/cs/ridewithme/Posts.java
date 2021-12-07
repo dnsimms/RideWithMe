@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public class Posts{
     private String date, time, departState, departCity, arrivalState, arrivalCity, userType = "rider";
+    private boolean isAccepted;
 
     public Posts(){
         this.date = null;
@@ -17,6 +18,7 @@ public class Posts{
         this.departCity = null;
         this.arrivalCity = null;
         this.userType = "rider";
+        isAccepted = false;
     }
 
     public Posts(String date, String time, String departc, String departs,
@@ -38,6 +40,7 @@ public class Posts{
         result.put("Arrival State", arrivalState);
         result.put("Arrival City", arrivalCity);
         result.put("User Type", userType);
+        result.put("Is Accepted", isAccepted);
 
         return result;
     }
@@ -65,6 +68,13 @@ public class Posts{
     }
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public boolean getIsAccepted(){
+        return this.isAccepted;
+    }
+    public void setAccepted(boolean a){
+        this.isAccepted = a;
     }
 
     public String toString() {

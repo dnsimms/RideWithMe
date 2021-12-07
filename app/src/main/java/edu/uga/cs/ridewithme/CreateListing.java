@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,8 @@ public class CreateListing extends AppCompatActivity {
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference fireBase = db.getReference();
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    public int points = 0;
 
 
     @Override
@@ -188,6 +190,47 @@ public class CreateListing extends AppCompatActivity {
             public void onClick(View view) {
                 createPost();
                 //make it transition to dashboardfrag
+                Switch switchButton = (Switch) findViewById(R.id.userSwitch);
+                //int points;
+                String pointString;
+                if(switchButton.isChecked()) {
+                    TextView pointsBox = findViewById(R.id.textView);
+                    Spinner stateSpinner = findViewById(R.id.stateSpinner);
+                    Spinner stateSpinner2 = findViewById(R.id.stateSpinner2);
+                    String stateSpinnerContent;
+                    String stateSpinnerContent2;
+                    stateSpinnerContent = stateSpinner.getSelectedItem().toString();
+                    stateSpinnerContent2 = stateSpinner2.getSelectedItem().toString();
+                    if(stateSpinnerContent.equalsIgnoreCase(stateSpinnerContent2)) {
+                        points = points + 50;
+                        pointString = Integer.toString(points);
+                        pointsBox.setText(pointString);
+                    }
+                    else {
+                        points = points + 100;
+                        pointString = Integer.toString(points);
+                        pointsBox.setText(pointString);
+                    }
+                }
+                if(switchButton.isChecked() == false) {
+                    Spinner stateSpinner = findViewById(R.id.stateSpinner);
+                    Spinner stateSpinner2 = findViewById(R.id.stateSpinner2);
+                    String stateSpinnerContent;
+                    String stateSpinnerContent2;
+                    TextView pointsBox = findViewById(R.id.textView);
+                    stateSpinnerContent = stateSpinner.getSelectedItem().toString();
+                    stateSpinnerContent2 = stateSpinner2.getSelectedItem().toString();
+                    if(stateSpinnerContent.equalsIgnoreCase(stateSpinnerContent2)) {
+                        points = points - 50;
+                        pointString = Integer.toString(points);
+                        pointsBox.setText(pointString);
+                    }
+                    else {
+                        points = points - 100;
+                        pointString = Integer.toString(points);
+                        pointsBox.setText(pointString);
+                    }
+                }
             }
         });
     }
@@ -198,6 +241,7 @@ public class CreateListing extends AppCompatActivity {
     private void createPost(){
         String date = "" + dateField.getText();
         String time = "" + timeField.getText();
+        int points = 0;
 
         post.setDate(date);
         post.setTime(time);
@@ -205,7 +249,7 @@ public class CreateListing extends AppCompatActivity {
         String locationKey = fireBase.push().getKey();
         Switch switchButton = (Switch) findViewById(R.id.userSwitch);
         if(switchButton.isChecked()){
-            post.setUserType("Driver");
+            post.setUserType("driver");
         }
 
         Map<String, Object> postContents = post.toMap();

@@ -1,6 +1,7 @@
 package edu.uga.cs.ridewithme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Context context;
 
 
+
     public RecyclerViewAdapter(ArrayList<String> postTitles, Context context) {
         this.postTitles = postTitles;
         this.context = context;
@@ -39,6 +41,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(DEBUG_TAG, "onBindViewHolder: listing");
         holder.posts.setText(postTitles.get(position));
+
+        holder.posts_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Intent intent;
+                intent = new Intent(context, Post_Details.class);
+                int pos = holder.getAdapterPosition();
+                intent.putExtra("position", pos);
+                context.startActivity(intent);
+
+            }
+        });
 
 
     }
