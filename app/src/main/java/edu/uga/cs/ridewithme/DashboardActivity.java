@@ -1,6 +1,5 @@
 package edu.uga.cs.ridewithme;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,9 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -110,6 +106,10 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        //TODO implement past rides menu button
+        //TODO if( item.getItemId() == R.id.past_rides)
+        //TODO send it to a new past rides activity
 
         //for toolbar, implement later
         return super.onOptionsItemSelected(item);

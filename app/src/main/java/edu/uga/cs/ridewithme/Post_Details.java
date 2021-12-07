@@ -37,8 +37,11 @@ public class Post_Details extends AppCompatActivity {
     private TextView userTitle, departCity, departState,
     arrivalCity, arrivalState, dateBox, timeBox, riderPoints;
     private Button acceptButton;
+
+    //Both variables are need to get the instance of the database
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference fireBase = db.getReference("posts");
+
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
@@ -71,11 +74,12 @@ public class Post_Details extends AppCompatActivity {
                 postCounter = 0;
                 userCounter = 0;
 
+                //this is how you read through the database
                 fireBase.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot != null){
-                            for (DataSnapshot data : snapshot.getChildren()) {
+                            for (DataSnapshot data : snapshot.getChildren()) {// TODO do data.getKey() to get the username of the poster
                                 for(DataSnapshot keyData : data.getChildren()){
                                     if((postCounter == pos) && !isFound){
                                         String location = keyData.getKey();
@@ -143,58 +147,6 @@ public class Post_Details extends AppCompatActivity {
 
             }
         });
-
-
-
-/**
-
-        try {
-            String line = "";
-            while (!isFound) {
-                while((line = reader.readLine()) !=null){
-                     int position = Integer.parseInt(line.substring(0, line.indexOf(",")));
-                     if(position != pos){
-                         continue;
-                     }else{
-                         int index = line.indexOf(",");
-                         line = line.substring(index +1);
-                         userType = line.substring(0, line.indexOf(","));
-
-                         index = line.indexOf(",");
-                         line = line.substring(index +1);
-                         date = line.substring(0, line.indexOf(","));
-
-                         index = line.indexOf(",");
-                         line = line.substring(index +1);
-                         dS = line.substring(0, line.indexOf(","));
-
-                         index = line.indexOf(",");
-                         line = line.substring(index +1);
-                         dC = line.substring(0, line.indexOf(","));
-
-                         index = line.indexOf(",");
-                         line = line.substring(index +1);
-                         aS = line.substring(0, line.indexOf(","));
-
-                         index = line.indexOf(",");
-                         line = line.substring(index +1);
-                         aC = line.substring(0, line.indexOf(","));
-
-                         index = line.indexOf(",");
-                         line = line.substring(index +1);
-                         username = line.substring(0, line.indexOf(","));
-                         isFound = true;
-                         break;
-                     }
-
-                }
-
-            }
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-**/
 
 
     }
