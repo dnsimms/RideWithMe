@@ -1,5 +1,6 @@
 package edu.uga.cs.ridewithme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +36,7 @@ public class CreateListing extends AppCompatActivity {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+    public int points = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -188,6 +191,47 @@ public class CreateListing extends AppCompatActivity {
             public void onClick(View view) {
                 createPost();
                 //make it transition to dashboardfrag
+                Switch switchButton = (Switch) findViewById(R.id.userSwitch);
+                //int points;
+                String pointString;
+                if(switchButton.isChecked()) {
+                    TextView pointsBox = findViewById(R.id.textView);
+                    Spinner stateSpinner = findViewById(R.id.stateSpinner);
+                    Spinner stateSpinner2 = findViewById(R.id.stateSpinner2);
+                    String stateSpinnerContent;
+                    String stateSpinnerContent2;
+                    stateSpinnerContent = stateSpinner.getSelectedItem().toString();
+                    stateSpinnerContent2 = stateSpinner2.getSelectedItem().toString();
+                    if(stateSpinnerContent.equalsIgnoreCase(stateSpinnerContent2)) {
+                        points = points + 50;
+                        pointString = Integer.toString(points);
+                        pointsBox.setText(pointString);
+                    }
+                    else {
+                        points = points + 100;
+                        pointString = Integer.toString(points);
+                        pointsBox.setText(pointString);
+                    }
+                }
+                if(switchButton.isChecked() == false) {
+                    Spinner stateSpinner = findViewById(R.id.stateSpinner);
+                    Spinner stateSpinner2 = findViewById(R.id.stateSpinner2);
+                    String stateSpinnerContent;
+                    String stateSpinnerContent2;
+                    TextView pointsBox = findViewById(R.id.textView);
+                    stateSpinnerContent = stateSpinner.getSelectedItem().toString();
+                    stateSpinnerContent2 = stateSpinner2.getSelectedItem().toString();
+                    if(stateSpinnerContent.equalsIgnoreCase(stateSpinnerContent2)) {
+                        points = points - 50;
+                        pointString = Integer.toString(points);
+                        pointsBox.setText(pointString);
+                    }
+                    else {
+                        points = points - 100;
+                        pointString = Integer.toString(points);
+                        pointsBox.setText(pointString);
+                    }
+                }
             }
         });
     }
@@ -198,6 +242,7 @@ public class CreateListing extends AppCompatActivity {
     private void createPost(){
         String date = "" + dateField.getText();
         String time = "" + timeField.getText();
+        int points = 0;
 
         post.setDate(date);
         post.setTime(time);
@@ -206,7 +251,11 @@ public class CreateListing extends AppCompatActivity {
         Switch switchButton = (Switch) findViewById(R.id.userSwitch);
         if(switchButton.isChecked()){
             post.setUserType("Driver");
+        //    points = points + 100;
         }
+        //else {
+          //  points = points - 100;
+       // }
 
         Map<String, Object> postContents = post.toMap();
         Map<String, Object> updater =new HashMap<>();
@@ -217,6 +266,8 @@ public class CreateListing extends AppCompatActivity {
         //this one line is how you add to the data base
         //it will always be this
         fireBase.updateChildren(updater);
+     //   TextView pointsBox = findViewById(R.id.textView);
+       // pointsBox.setText(points);
 
     }
 }
