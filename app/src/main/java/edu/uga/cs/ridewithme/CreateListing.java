@@ -1,11 +1,13 @@
 package edu.uga.cs.ridewithme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ public class CreateListing extends AppCompatActivity {
 
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     public int points = 0;
+    ImageButton homeButton;
 
 
     @Override
@@ -50,6 +53,14 @@ public class CreateListing extends AppCompatActivity {
         states2 = (Spinner) findViewById(R.id.stateSpinner2);
         cities2 = (Spinner) findViewById(R.id.citySpinner2);
 
+        homeButton = (ImageButton) findViewById(R.id.imageButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CreateListing.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         //This attaches the values to the spinner container, states.

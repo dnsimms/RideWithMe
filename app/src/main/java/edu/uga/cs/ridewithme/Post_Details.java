@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,8 @@ public class Post_Details extends AppCompatActivity {
     private TextView userTitle, departCity, departState,
     arrivalCity, arrivalState, dateBox, timeBox, riderPoints;
     private Button acceptButton;
+    ImageButton homeButton;
+    Button otherPosts;
 
     //Both variables are need to get the instance of the database
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -65,6 +68,24 @@ public class Post_Details extends AppCompatActivity {
         riderPoints = findViewById(R.id.riderPoints);
         acceptButton = findViewById(R.id.accept);
         populateInfo();
+
+        homeButton = (ImageButton) findViewById(R.id.imageButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Post_Details.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        otherPosts = findViewById(R.id.button);
+        otherPosts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Post_Details.this, DashboardActivity.class);
+                startActivity(i);
+            }
+        });
 
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override

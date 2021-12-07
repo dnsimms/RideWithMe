@@ -51,10 +51,10 @@ public class Past_Rides extends AppCompatActivity {
     }
 
     private void createRecycleViewer(){
-        RecyclerView rView = findViewById(R.id.recycleView2);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(pastTitles, this);
-        rView.setAdapter(adapter);
-        rView.setLayoutManager(new LinearLayoutManager(this));
+   //     RecyclerView rView = findViewById(R.id.recycleView2);
+    //    RecyclerViewAdapter adapter = new RecyclerViewAdapter(pastTitles, this);
+  //      rView.setAdapter(adapter);
+    //    rView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
