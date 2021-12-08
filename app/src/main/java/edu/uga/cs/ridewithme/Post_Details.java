@@ -22,9 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class Post_Details extends AppCompatActivity {
     private TextView detailsText;
@@ -49,7 +47,7 @@ public class Post_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_details);
         Intent intent = getIntent();
-        pos = intent.getIntExtra("position", 1);
+        pos = intent.getIntExtra("position", 0);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
@@ -81,16 +79,19 @@ public class Post_Details extends AppCompatActivity {
                         if(snapshot != null){
                             for (DataSnapshot data : snapshot.getChildren()) {// TODO do data.getKey() to get the username of the poster
                                 for(DataSnapshot keyData : data.getChildren()){
-                                    if((postCounter == pos) && !isFound){
-                                        String location = keyData.getKey();
-                                        fireBase.child(uName).child(location).child("Is Accepted").setValue("true");
-                                        isFound = true;
+                                    String accepted = "" + keyData.child("Is Accepted").getValue();
+                                    if(!(accepted.equalsIgnoreCase("true"))){
+                                        if((postCounter == pos) && !isFound){
+                                            String location = keyData.getKey();
+                                            fireBase.child(uName).child(location).child("Is Accepted").setValue("true");
+                                            fireBase.child(uName).child(location).child("Accepted By").setValue(uName);
+                                            isFound = true;
+                                        }
+                                    }else{
+                                        continue;
                                     }
                                     ++postCounter;
-
                                 }
-                                ++userCounter;
-                                postCounter = 0;
                             }
 
                         }
@@ -119,24 +120,25 @@ public class Post_Details extends AppCompatActivity {
                 if(snapshot != null){
                     for (DataSnapshot data : snapshot.getChildren()) {
                         for(DataSnapshot keyData : data.getChildren()){
-
-                            if((postCounter == pos) && !isFound){
-                                username = "" + data.getKey();
-                                dS = "" + keyData.child("Depart State").getValue();
-                                dC = "" + keyData.child("Depart City").getValue();
-                                userType = "" + keyData.child("User Type").getValue();
-                                aS = "" + keyData.child("Arrival State").getValue();
-                                aC = "" + keyData.child("Arrival City").getValue();
-                                date = "" + keyData.child("Date").getValue();
-                                time = "" + keyData.child("Time").getValue();
-                                setTexts();
-                                isFound = true;
+                            String accepted = "" + keyData.child("Is Accepted").getValue();
+                            if(!(accepted.equalsIgnoreCase("true"))){
+                                if((postCounter == pos) && !isFound){
+                                    username = "" + data.getKey();
+                                    dS = "" + keyData.child("Depart State").getValue();
+                                    dC = "" + keyData.child("Depart City").getValue();
+                                    userType = "" + keyData.child("User Type").getValue();
+                                    aS = "" + keyData.child("Arrival State").getValue();
+                                    aC = "" + keyData.child("Arrival City").getValue();
+                                    date = "" + keyData.child("Date").getValue();
+                                    time = "" + keyData.child("Time").getValue();
+                                    setTexts();
+                                    isFound = true;
+                                }
+                            }else{
+                                continue;
                             }
                             ++postCounter;
-
                         }
-                        ++userCounter;
-                        postCounter = 0;
                     }
 
                 }
@@ -177,7 +179,21 @@ public class Post_Details extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        //for toolbar, implement later
+        if(item.getItemId() == R.id.signOut){
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(Post_Details.this, MainActivity.class);
+            startActivity(intent);
+        }
+
+        if(item.getItemId() == R.id.past_rides){
+            Intent intent = new Intent(Post_Details.this, Past_Rides.class);
+            startActivity(intent);
+        }
+
+        if(item.getItemId() == R.id.create_post){
+            Intent intent = new Intent(Post_Details.this, CreateListing.class);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

@@ -9,6 +9,8 @@ import java.util.Map;
 public class Posts{
     private String date, time, departState, departCity, arrivalState, arrivalCity, userType = "rider";
     private boolean isAccepted, isConfirmed;
+    private String acceptedBy = "none";
+    private int points;
 
     public Posts(){
         this.date = null;
@@ -20,6 +22,8 @@ public class Posts{
         this.userType = "rider";
         isAccepted = false;
         isConfirmed = false;
+        acceptedBy = "none";
+        points = 0;
     }
 
     public Posts(String date, String time, String departc, String departs,
@@ -43,6 +47,8 @@ public class Posts{
         result.put("User Type", userType);
         result.put("Is Accepted", isAccepted);
         result.put("Is Confirmed", isConfirmed);
+        result.put("Accepted By", acceptedBy);
+        result.put("Points", points);
 
         return result;
     }
@@ -84,6 +90,13 @@ public class Posts{
     }
     public void setConfirmed(boolean a){
         this.isAccepted = a;
+    }
+
+    public int getPoints(){
+        return this.points;
+    }
+    public void addPoints(int a){
+        this.points += a;
     }
 
     public String toString() {

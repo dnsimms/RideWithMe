@@ -50,6 +50,17 @@
             android:name=".Post_Details"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".Past_Rides"
+            android:parentActivityName=".DashboardActivity"
+            android:exported="true">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".Past_Details"
+            android:exported="true">
+        </activity>
 
     </application>
 

@@ -1,5 +1,6 @@
 package edu.uga.cs.ridewithme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -59,8 +60,6 @@ public class DashboardActivity extends AppCompatActivity {
                                 String title = city + ", " + state + " -> " + aCity + ", " + aState +
                                         " on " + date + " | " + userType;
                                 namePosts(title);
-                                ++counter;
-                                ++pid;
                             }
                         }
 
@@ -110,6 +109,24 @@ public class DashboardActivity extends AppCompatActivity {
         //TODO implement past rides menu button
         //TODO if( item.getItemId() == R.id.past_rides)
         //TODO send it to a new past rides activity
+
+        if(item.getItemId() == R.id.signOut){
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
+        if(item.getItemId() == R.id.past_rides){
+            Intent intent = new Intent(DashboardActivity.this, Past_Rides.class);
+            startActivity(intent);
+        }
+
+        if(item.getItemId() == R.id.create_post){
+            Intent intent = new Intent(DashboardActivity.this, CreateListing.class);
+            startActivity(intent);
+        }
+
+
 
         //for toolbar, implement later
         return super.onOptionsItemSelected(item);

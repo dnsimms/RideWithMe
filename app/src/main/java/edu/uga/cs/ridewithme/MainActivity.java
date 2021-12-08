@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String DEBUG_TAG = "MainPage";
 
-    private Button loginButton, registerButton, submitButton;
+    private Button loginButton, registerButton, submitButton, registerButton2;
     private LinearLayout loginBox, signInButtonsBox;
     private EditText emailBox, passBox;
     private FirebaseAuth authenticator;
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton = findViewById(R.id.loginButton);
         registerButton = findViewById(R.id.registerButton);
+        registerButton2 = findViewById(R.id.registerButton2);
         authenticator = FirebaseAuth.getInstance();
 
 
@@ -58,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        registerButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,8 +23,8 @@ public class PastRidesRecycleView extends RecyclerView.Adapter<PastRidesRecycleV
 
 
 
-    public PastRidesRecycleView(ArrayList<String> postTitles, Context context) {
-        this.pastTitles = postTitles;
+    public PastRidesRecycleView(ArrayList<String> pastTitles, Context context) {
+        this.pastTitles = pastTitles;
         this.context = context;
     }
 
@@ -42,11 +42,11 @@ public class PastRidesRecycleView extends RecyclerView.Adapter<PastRidesRecycleV
         Log.d(DEBUG_TAG, "onBindViewHolder: listing");
         holder.posts.setText(pastTitles.get(position));
 
-        holder.posts_layout.setOnClickListener(new View.OnClickListener() {
+        holder.past_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Intent intent;
-                intent = new Intent(context, Past_Rides.class); //TODO change past_rides to past_details
+                intent = new Intent(context, Past_Details.class);
                 int pos = holder.getAdapterPosition();
                 intent.putExtra("position", pos);
                 context.startActivity(intent);
@@ -64,12 +64,12 @@ public class PastRidesRecycleView extends RecyclerView.Adapter<PastRidesRecycleV
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView posts;
-        private LinearLayout posts_layout;
+        private LinearLayout past_layout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             posts = itemView.findViewById(R.id.pastItems);
-            posts_layout = itemView.findViewById(R.id.past_layout);
+            past_layout = itemView.findViewById(R.id.past_layout);
 
         }
     }

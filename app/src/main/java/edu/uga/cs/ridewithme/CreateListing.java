@@ -1,6 +1,9 @@
 package edu.uga.cs.ridewithme;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,8 +13,10 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,6 +40,8 @@ public class CreateListing extends AppCompatActivity {
 
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     public int points = 0;
+    private Toolbar toolbar;
+    private Track_Points tracker = new Track_Points();
 
 
     @Override
@@ -49,6 +56,11 @@ public class CreateListing extends AppCompatActivity {
         cities = (Spinner) findViewById(R.id.citySpinner);
         states2 = (Spinner) findViewById(R.id.stateSpinner2);
         cities2 = (Spinner) findViewById(R.id.citySpinner2);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar0);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
 
@@ -188,12 +200,11 @@ public class CreateListing extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createPost();
                 //make it transition to dashboardfrag
                 Switch switchButton = (Switch) findViewById(R.id.userSwitch);
                 //int points;
                 String pointString;
-                if(switchButton.isChecked()) {
+                if(switchButton.isChecked()) {//if driver
                     TextView pointsBox = findViewById(R.id.textView);
                     Spinner stateSpinner = findViewById(R.id.stateSpinner);
                     Spinner stateSpinner2 = findViewById(R.id.stateSpinner2);
@@ -202,17 +213,17 @@ public class CreateListing extends AppCompatActivity {
                     stateSpinnerContent = stateSpinner.getSelectedItem().toString();
                     stateSpinnerContent2 = stateSpinner2.getSelectedItem().toString();
                     if(stateSpinnerContent.equalsIgnoreCase(stateSpinnerContent2)) {
-                        points = points + 50;
-                        pointString = Integer.toString(points);
-                        pointsBox.setText(pointString);
+                        post.addPoints(-50);
+                        String points = "+50 points";
+                        pointsBox.setText(points);
                     }
                     else {
-                        points = points + 100;
-                        pointString = Integer.toString(points);
-                        pointsBox.setText(pointString);
+                        post.addPoints(-100);
+                        String points = "+100 points";
+                        pointsBox.setText(points);
                     }
                 }
-                if(switchButton.isChecked() == false) {
+                if(!switchButton.isChecked()) {
                     Spinner stateSpinner = findViewById(R.id.stateSpinner);
                     Spinner stateSpinner2 = findViewById(R.id.stateSpinner2);
                     String stateSpinnerContent;
@@ -221,16 +232,17 @@ public class CreateListing extends AppCompatActivity {
                     stateSpinnerContent = stateSpinner.getSelectedItem().toString();
                     stateSpinnerContent2 = stateSpinner2.getSelectedItem().toString();
                     if(stateSpinnerContent.equalsIgnoreCase(stateSpinnerContent2)) {
-                        points = points - 50;
-                        pointString = Integer.toString(points);
-                        pointsBox.setText(pointString);
+                        post.addPoints(50);
+                        String points = "-50 points";
+                        pointsBox.setText(points);
                     }
                     else {
-                        points = points - 100;
-                        pointString = Integer.toString(points);
-                        pointsBox.setText(pointString);
+                        post.addPoints(100);
+                        String points = "-100 points";
+                        pointsBox.setText(points);
                     }
                 }
+                createPost();
             }
         });
     }
@@ -243,6 +255,7 @@ public class CreateListing extends AppCompatActivity {
         String time = "" + timeField.getText();
         int points = 0;
 
+
         post.setDate(date);
         post.setTime(time);
         String username = user.getDisplayName();
@@ -250,6 +263,24 @@ public class CreateListing extends AppCompatActivity {
         Switch switchButton = (Switch) findViewById(R.id.userSwitch);
         if(switchButton.isChecked()){
             post.setUserType("driver");
+            int postPoints = post.getPoints();
+            int nextPoints = tracker.getPoints();
+            if(postPoints == -50){
+                nextPoints = nextPoints + 50;
+            }else{
+                nextPoints = nextPoints +100;
+            }
+            tracker.setPoints(nextPoints);
+        }else{
+
+            int postPoints = post.getPoints();
+            int nextPoints = tracker.getPoints();
+            if(postPoints == -50){
+                nextPoints = nextPoints - 50;
+            }else{
+                nextPoints = nextPoints - 100;
+            }
+            tracker.setPoints(nextPoints);
         }
 
         Map<String, Object> postContents = post.toMap();
@@ -262,5 +293,42 @@ public class CreateListing extends AppCompatActivity {
         //it will always be this
         fireBase.updateChildren(updater);
 
+        Intent intent = new Intent(CreateListing.this, DashboardActivity.class);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.buttons, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.signOut){
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(CreateListing.this, MainActivity.class);
+            startActivity(intent);
+        }
+
+        if(item.getItemId() == R.id.past_rides){
+            Intent intent = new Intent(CreateListing.this, Past_Rides.class);
+            startActivity(intent);
+        }
+
+        if(item.getItemId() == R.id.create_post){
+                Intent intent = new Intent(CreateListing.this, CreateListing.class);
+            startActivity(intent);
+        }
+
+        //for toolbar, implement later
+        return super.onOptionsItemSelected(item);
     }
 }
