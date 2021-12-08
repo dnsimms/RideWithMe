@@ -12,6 +12,9 @@ public class Posts{
     private String acceptedBy = "none";
     private int points;
 
+    /**
+     * Default Constructor. Posts start out as a rider with all values as null, and accepted by none.
+     */
     public Posts(){
         this.date = null;
         this.time = null;
@@ -36,6 +39,10 @@ public class Posts{
         this.arrivalCity = arrivalc;
     }
 
+    /**
+     * Create a Map<String, Object> to help with adding the post to the database and displaying info correctly
+     * @return
+     */
     public Map<String, Object> toMap(){
         HashMap<String, Object> result = new HashMap<>();
         result.put("Date", date);
@@ -53,16 +60,52 @@ public class Posts{
         return result;
     }
 
+    /**
+     * Returns the post's departure date
+     * @return post date
+     */
     public String getDate(){return date;}
+
+    /**
+     * Sets the post's departure date
+     * @param date post date
+     */
     public void setDate(String date){this.date = date;}
 
+    /**
+     * Returns the departure time
+     * @return departure time
+     */
     public String getTime(){return time;}
+
+    /**
+     * Sets the post's departure time
+     * @param time departure time
+     */
     public void setTime(String time ){this.time = time;}
 
+    /**
+     * Returns the departure state
+     * @return departure state
+     */
     public String getDepartState(){return departState;}
+
+    /**
+     * Sets the departure state
+     * @param departs departure state
+     */
     public void setDepartState(String departs){this.departState = departs;}
 
+    /**
+     * Returns the arrival state
+     * @return arrival state
+     */
     public String getArrivalState(){return arrivalState;}
+
+    /**
+     * Sets the arrival state
+     * @param arrivals arrival state
+     */
     public void setArrivalState(String arrivals){this.arrivalState = arrivals;}
 
     public String getDepartCity(){return departCity;}

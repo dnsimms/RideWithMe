@@ -24,8 +24,6 @@ import java.util.ArrayList;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private int position = 0, counter = 0, pid = 1;
-    private boolean viewing = false;
     private ArrayList<String> postTitles = new ArrayList<>();
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference fireBase = db.getReference("posts");
@@ -35,12 +33,14 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        //String[] postContents = new String[20];
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
+        //Read all the posts made by users and post them to the activity
         fireBase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -50,7 +50,7 @@ public class DashboardActivity extends AppCompatActivity {
                             String key = keyData.getKey();
                             String username = "" + snapshot.getKey();
                             String accepted = "" + keyData.child("Is Accepted").getValue();
-                            if(!(accepted.equalsIgnoreCase("true"))){
+                            if(!(accepted.equalsIgnoreCase("true"))){//only show unaccepted posts
                                 String state = "" + keyData.child("Depart State").getValue();
                                 String city = "" + keyData.child("Depart City").getValue();
                                 String userType = "" + keyData.child("User Type").getValue();
@@ -79,11 +79,17 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Adds the generated post title to the array list
+     * @param ps the title of the post
+     */
     private void namePosts(String ps){
         postTitles.add(ps);
     }
 
+    /**
+     * Creates the RecycleViewer to list the posts
+     */
     private void createRecycleViewer(){
         RecyclerView rView = findViewById(R.id.recycleView);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(postTitles, this);
@@ -106,10 +112,6 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        //TODO implement past rides menu button
-        //TODO if( item.getItemId() == R.id.past_rides)
-        //TODO send it to a new past rides activity
-
         if(item.getItemId() == R.id.signOut){
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
@@ -126,9 +128,6 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-
-
-        //for toolbar, implement later
         return super.onOptionsItemSelected(item);
     }
 }

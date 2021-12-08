@@ -25,8 +25,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 
 public class Post_Details extends AppCompatActivity {
-    private TextView detailsText;
-    private int pos = 0, userCounter = 0, postCounter = 0;
+    private int pos = 0, postCounter = 0;
     private BufferedReader reader = null;
     private InputStream streamer = null;
     private String userType, username, dC, dS, aC,
@@ -34,7 +33,7 @@ public class Post_Details extends AppCompatActivity {
     private boolean isFound = false;
     private TextView userTitle, departCity, departState,
     arrivalCity, arrivalState, dateBox, timeBox, riderPoints;
-    private Button acceptButton;
+    private Button acceptButton, viewButton;
 
     //Both variables are need to get the instance of the database
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -62,7 +61,16 @@ public class Post_Details extends AppCompatActivity {
         timeBox = findViewById(R.id.timeBox);
         riderPoints = findViewById(R.id.riderPoints);
         acceptButton = findViewById(R.id.accept);
+        viewButton = findViewById(R.id.button);
         populateInfo();
+
+        viewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Post_Details.this, DashboardActivity.class);
+                startActivity(intent);
+            }
+        });
 
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,21 +78,21 @@ public class Post_Details extends AppCompatActivity {
                 String uName = user.getDisplayName();
                 isFound = false;
                 postCounter = 0;
-                userCounter = 0;
 
                 //this is how you read through the database
                 fireBase.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot != null){
-                            for (DataSnapshot data : snapshot.getChildren()) {// TODO do data.getKey() to get the username of the poster
+                            for (DataSnapshot data : snapshot.getChildren()) {
                                 for(DataSnapshot keyData : data.getChildren()){
                                     String accepted = "" + keyData.child("Is Accepted").getValue();
+                                    String username = "" + data.getKey();
                                     if(!(accepted.equalsIgnoreCase("true"))){
                                         if((postCounter == pos) && !isFound){
                                             String location = keyData.getKey();
-                                            fireBase.child(uName).child(location).child("Is Accepted").setValue("true");
-                                            fireBase.child(uName).child(location).child("Accepted By").setValue(uName);
+                                            fireBase.child(username).child(location).child("Is Accepted").setValue("true");
+                                            fireBase.child(username).child(location).child("Accepted By").setValue(uName);
                                             isFound = true;
                                         }
                                     }else{
@@ -111,6 +119,9 @@ public class Post_Details extends AppCompatActivity {
 
     }
 
+    /**
+     * This displays the details of posts that have not been accepted by a user
+     */
     private void populateInfo(){
 
 
@@ -153,6 +164,9 @@ public class Post_Details extends AppCompatActivity {
 
     }
 
+    /**
+     * Sets the values of the textviews
+     */
     private void setTexts(){
         userTitle.setText(userType + " | " + username);
         departCity.setText(dC);

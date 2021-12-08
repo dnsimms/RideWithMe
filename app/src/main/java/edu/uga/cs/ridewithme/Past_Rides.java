@@ -43,6 +43,7 @@ public class Past_Rides extends AppCompatActivity {
         String pointsLabel = "Points Total: ";
         pointsTotal.setText(pointsLabel + Track_Points.getInstance(getApplicationContext()).getPoints());
 
+        //this will gather the info of valid, accepted post by the current user that have not been confirmed by them
         fireBase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -81,12 +82,12 @@ public class Past_Rides extends AppCompatActivity {
             }
         });
 
-
-        //TODO if the user clicks the button, change their Is Confirmed value to "true"
-        //TODO the post should disappear and riderpoints are appropriately allocated
-
     }
 
+    /**
+     * Adds the title of the past ride to the post
+     * @param ps title of the past ride
+     */
     private void listPosts(String ps){
         pastTitles.add(ps);
     }

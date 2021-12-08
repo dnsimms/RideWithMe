@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="30px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +35,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/createTitle"
+                android:textSize="32sp"
+                android:textStyle="bold"
                 android:translationY="-30dp" />
 
             <Switch
@@ -41,6 +44,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
+                android:padding="25px"
+                android:textSize="24sp"
                 android:text="@string/switcher" />
 
             <EditText
@@ -66,7 +71,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="25px">
 
                 <Spinner
                     android:id="@+id/stateSpinner"
@@ -124,11 +130,12 @@
                     android:layout_weight="1"
                     android:text="@string/createButton" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="103dp"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_width="168dp"
+                android:layout_height="97dp"
+                android:text="Rider Points" />
 
         </LinearLayout>
     </LinearLayout>

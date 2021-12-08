@@ -28,12 +28,10 @@ public class Past_Details extends AppCompatActivity {
     private int pos = 0, points = 0, postCounter = 0;
     private TextView userTitle2, departCity2, departState2,
             arrivalCity2, arrivalState2, dateBox2, timeBox2, riderPoints2;
-    private Button acceptButton2;
+    private Button acceptButton2, viewButton2;
     private String userType, username, dC, dS, aC,
             aS, date, time, rPoints;
     private boolean isFound = false;
-    private Menu menu;
-    private MenuItem pointsLog;
 
 
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -62,7 +60,16 @@ public class Past_Details extends AppCompatActivity {
         timeBox2 = findViewById(R.id.timeBox2);
         riderPoints2 = findViewById(R.id.riderPoints2);
         acceptButton2 = findViewById(R.id.accept2);
+        viewButton2 = findViewById(R.id.button2);
         getPastDetails();
+
+        viewButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Past_Details.this, Past_Rides.class);
+                startActivity(intent);
+            }
+        });
 
         acceptButton2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,12 +77,12 @@ public class Past_Details extends AppCompatActivity {
                 isFound = false;
                 postCounter = 0;
 
-                //this is how you read through the database
+
                 fireBase.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot != null){
-                            for (DataSnapshot data : snapshot.getChildren()) {// TODO do data.getKey() to get the username of the poster
+                            for (DataSnapshot data : snapshot.getChildren()) {
                                 for(DataSnapshot keyData : data.getChildren()){
                                     String username = "" + data.getKey();
                                     String acceptedUsername = "" + keyData.child("Accepted By").getValue();
@@ -83,9 +90,10 @@ public class Past_Details extends AppCompatActivity {
                                     String accepted = "" + keyData.child("Is Accepted").getValue();
                                     String confirmed = "" + keyData.child("Is Confirmed").getValue();
                                     String postPoints = "" + keyData.child("Points").getValue();
+                                    //Only get the post if it has been accepted and if it was accepted by the current user
                                     if((accepted.equalsIgnoreCase("true")) && currentUsername.equals(acceptedUsername)){
-                                        if(confirmed.equalsIgnoreCase("false")){
-                                            if((postCounter == pos) && !isFound){
+                                        if(confirmed.equalsIgnoreCase("false")){ //only get the post if it hasn't been confirmed
+                                            if((postCounter == pos) && !isFound){//change value is confirmed to true once all conditions are met
                                                 String location = keyData.getKey();
                                                 fireBase.child(username).child(location).child("Is Confirmed").setValue("true");
                                                 isFound = true;
@@ -121,6 +129,9 @@ public class Past_Details extends AppCompatActivity {
 
     }
 
+    /**
+     * This makes sure to display the accurate post details for the selected post
+     */
     private void getPastDetails(){
 
         fireBase.addValueEventListener(new ValueEventListener() {
@@ -133,6 +144,7 @@ public class Past_Details extends AppCompatActivity {
                             String currentUsername = "" + user.getDisplayName();
                             String accepted = "" + keyData.child("Is Accepted").getValue();
                             String confirmed = "" + keyData.child("Is Confirmed").getValue();
+                            //posts are only shown if they've been accepted by the user and have not been confirmed completed
                             if((accepted.equalsIgnoreCase("true")) && currentUsername.equals(acceptedUsername)){
                                 if(confirmed.equalsIgnoreCase("false")){
                                     if((postCounter == pos) && !isFound){
@@ -168,6 +180,9 @@ public class Past_Details extends AppCompatActivity {
 
     }
 
+    /**
+     * Sets the text values for all the textviews in the layout
+     */
     private void setTexts(){
         userTitle2.setText(userType + " | " + username);
         departCity2.setText(dC);

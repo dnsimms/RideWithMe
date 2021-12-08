@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //register button that is visible after you press login
         registerButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Signs in a current user into the app
+     * @param email email of the user
+     * @param password password of the user
+     */
     private void signInUser(String email, String password){
         authenticator.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
@@ -101,7 +107,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Once the user is logged in, it will take them to the landing page
+     * @param user current user
+     */
     private void updateUI(FirebaseUser user){
         if(user != null){
             Intent intent = new Intent(this, PostManagementActivity.class);

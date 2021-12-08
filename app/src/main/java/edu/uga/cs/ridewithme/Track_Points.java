@@ -2,6 +2,9 @@ package edu.uga.cs.ridewithme;
 
 import android.content.Context;
 
+/**
+ * Keeps track of the points of a user
+ */
 public class Track_Points {
 
     private int points = 300;

@@ -42,6 +42,7 @@ public class PastRidesRecycleView extends RecyclerView.Adapter<PastRidesRecycleV
         Log.d(DEBUG_TAG, "onBindViewHolder: listing");
         holder.posts.setText(pastTitles.get(position));
 
+        //When the user clicks on a post it will display the details of the ride
         holder.past_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -39,7 +39,6 @@ public class CreateListing extends AppCompatActivity {
     private DatabaseReference fireBase = db.getReference();
 
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    public int points = 0;
     private Toolbar toolbar;
     private Track_Points tracker = new Track_Points();
 
@@ -173,7 +172,6 @@ public class CreateListing extends AppCompatActivity {
 
                 //Set the selected state to the post
                 post.setArrivalState(adapterView.getItemAtPosition(i).toString());
-                // post.setDepartState(adapterView.getItemAtPosition(i).toString());
             }
 
 
@@ -200,11 +198,11 @@ public class CreateListing extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //make it transition to dashboardfrag
+
                 Switch switchButton = (Switch) findViewById(R.id.userSwitch);
-                //int points;
-                String pointString;
-                if(switchButton.isChecked()) {//if driver
+
+
+                if(switchButton.isChecked()) {//check if theyre a driver
                     TextView pointsBox = findViewById(R.id.textView);
                     Spinner stateSpinner = findViewById(R.id.stateSpinner);
                     Spinner stateSpinner2 = findViewById(R.id.stateSpinner2);
@@ -212,18 +210,18 @@ public class CreateListing extends AppCompatActivity {
                     String stateSpinnerContent2;
                     stateSpinnerContent = stateSpinner.getSelectedItem().toString();
                     stateSpinnerContent2 = stateSpinner2.getSelectedItem().toString();
-                    if(stateSpinnerContent.equalsIgnoreCase(stateSpinnerContent2)) {
+                    if(stateSpinnerContent.equalsIgnoreCase(stateSpinnerContent2)) {//give the post a -50 point value
                         post.addPoints(-50);
                         String points = "+50 points";
                         pointsBox.setText(points);
                     }
-                    else {
+                    else {//100 if out of state
                         post.addPoints(-100);
                         String points = "+100 points";
                         pointsBox.setText(points);
                     }
                 }
-                if(!switchButton.isChecked()) {
+                if(!switchButton.isChecked()) {//if theyre a rider
                     Spinner stateSpinner = findViewById(R.id.stateSpinner);
                     Spinner stateSpinner2 = findViewById(R.id.stateSpinner2);
                     String stateSpinnerContent;
@@ -250,28 +248,30 @@ public class CreateListing extends AppCompatActivity {
 
 
     //Adds the rest of the values to the post object and then adds the post object to the database
+
+    /**
+     * This method sets the values of the created post to the Posts object and adds it to the database
+     */
     private void createPost(){
         String date = "" + dateField.getText();
         String time = "" + timeField.getText();
-        int points = 0;
-
 
         post.setDate(date);
         post.setTime(time);
-        String username = user.getDisplayName();
+        String username = user.getDisplayName(); //get current user's display name
         String locationKey = fireBase.push().getKey();
         Switch switchButton = (Switch) findViewById(R.id.userSwitch);
-        if(switchButton.isChecked()){
+        if(switchButton.isChecked()){//if they made a drive offer, give them points
             post.setUserType("driver");
             int postPoints = post.getPoints();
             int nextPoints = tracker.getPoints();
-            if(postPoints == -50){
+            if(postPoints == -50){//50 for in state
                 nextPoints = nextPoints + 50;
-            }else{
+            }else{//100 for out of state
                 nextPoints = nextPoints +100;
             }
             tracker.setPoints(nextPoints);
-        }else{
+        }else{//else if theyre a rider
 
             int postPoints = post.getPoints();
             int nextPoints = tracker.getPoints();
@@ -287,12 +287,14 @@ public class CreateListing extends AppCompatActivity {
         Map<String, Object> updater =new HashMap<>();
 
 
+        //find the path to log the post info
         updater.put("/posts/" + username + "/" + locationKey, postContents);
 
         //this one line is how you add to the data base
         //it will always be this
         fireBase.updateChildren(updater);
 
+        //once created, go to dash
         Intent intent = new Intent(CreateListing.this, DashboardActivity.class);
         startActivity(intent);
 
@@ -312,7 +314,7 @@ public class CreateListing extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.signOut){
+        if(item.getItemId() == R.id.signOut){//if they click, sign them out
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(CreateListing.this, MainActivity.class);
             startActivity(intent);

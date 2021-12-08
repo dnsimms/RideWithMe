@@ -20,7 +20,9 @@
         android:layout_marginTop="25dp"
         android:gravity="center"
         android:text="username"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/departTitle2"
@@ -28,7 +30,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/depart"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,14 +50,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
-                android:text="City" />
+                android:text="City"
+                android:textSize="16sp"
+                android:textStyle="italic"/>
 
             <TextView
                 android:id="@+id/departState2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
-                android:text="State" />
+                android:text="State"
+                android:textSize="16sp"
+                android:textStyle="italic"/>
         </LinearLayout>
 
         <TextView
@@ -86,30 +94,45 @@
             android:text="TextView" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/dateBox2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Date" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/timeBox2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Time" />
+        <TextView
+            android:id="@+id/dateBox2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Date"
+            android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/riderPoints2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rider Points" />
+        <TextView
+            android:id="@+id/timeBox2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textStyle="italic" />
 
-    <Button
-        android:id="@+id/accept2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Accept" />
+        <TextView
+            android:id="@+id/riderPoints2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rider Points" />
+
+        <Button
+            android:id="@+id/accept2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Accept" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Other Posts" />
+
+    </LinearLayout>
 
 </LinearLayout>

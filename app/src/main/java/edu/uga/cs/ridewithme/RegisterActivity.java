@@ -52,6 +52,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Creates a new user and authenticates their information with Firebase
+     * @param email user email
+     * @param password user password
+     * @param userName display name
+     */
     private void createUser(String email, String password, String userName){
         authenticator.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
@@ -70,6 +76,11 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Adds the display name of the user to their account
+     * @param username display name
+     * @param user Firebase user
+     */
     private void addUsername(String username, FirebaseUser user){
         UserProfileChangeRequest addUsername = new UserProfileChangeRequest.Builder()
                 .setDisplayName(username)
